@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <catt.custom.view.GestureLockView
+        android:id="@+id/mGestureLockView1"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:background="#333"
+        app:catt_ErrorColor="#ff4d4d"
+        app:catt_NormalColor="#ffffff"
+        app:catt_PasswordColumn="3"
+        app:catt_PasswordLength="6"
+        app:catt_PasswordMargin="16dp"
+        app:catt_PasswordRow="3"
+        app:catt_PressedColor="#1ba3d9"
+        app:catt_StrokeWidth="4dp"
+        app:catt_SuccessfulColor="#55b66a"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/mGestureLockView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <catt.custom.view.GestureLockView
+        android:id="@+id/mGestureLockView2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="#333"
+        app:catt_ErrorColor="#ff4d4d"
+        app:catt_NormalColor="#ffffff"
+        app:catt_PasswordColumn="5"
+        app:catt_PasswordLength="6"
+        app:catt_PasswordMargin="16dp"
+        app:catt_PasswordRow="5"
+        app:catt_PressedColor="#1ba3d9"
+        app:catt_StrokeWidth="4dp"
+        app:catt_SuccessfulColor="#55b66a"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/mGestureLockView1"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

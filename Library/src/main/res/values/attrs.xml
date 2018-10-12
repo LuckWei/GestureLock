@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="GestureLockView">
+        <attr name="catt_PressedColor" format="color" />
+        <attr name="catt_SuccessfulColor" format="color" />
+        <attr name="catt_NormalColor" format="color" />
+        <attr name="catt_ErrorColor" format="color" />
+        <attr name="catt_StrokeWidth" format="dimension" />
+        <attr name="catt_PasswordMargin" format="dimension" />
+        <attr name="catt_PasswordRow" format="integer" />
+        <attr name="catt_PasswordColumn" format="integer" />
+        <attr name="catt_PasswordLength" format="integer" />
+    </declare-styleable>
+</resources>
