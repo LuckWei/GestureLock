@@ -1,4 +1,4 @@
-package catt.custom.view
+package catt.custom.view.day15
 
 import android.content.Context
 import android.graphics.Canvas
@@ -11,13 +11,14 @@ import android.util.TypedValue
 import android.view.MotionEvent
 import android.view.View
 import androidx.annotation.IntDef
+import catt.custom.view.R
 import java.lang.ref.WeakReference
 import java.util.concurrent.Executors
 
-class GestureLockView
+class Day15GestureLockView
 @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0)
     : View(context, attrs, defStyleAttr) {
-    private val _TAG: String = GestureLockView::class.java.simpleName
+    private val _TAG: String = Day15GestureLockView::class.java.simpleName
     private val _linePaint: Paint by lazy {
         Paint().apply {
             isAntiAlias = true
@@ -96,29 +97,23 @@ class GestureLockView
     private var listener: OnGestureLockEventListener? = null
 
     init {
-        context.obtainStyledAttributes(attrs, R.styleable.GestureLockView).apply {
-            passwordLength = getInt(R.styleable.GestureLockView_catt_PasswordLength, passwordLength)
+        context.obtainStyledAttributes(attrs, R.styleable.Day15GestureLockView).apply {
+            passwordLength = getInt(R.styleable.Day15GestureLockView_catt15_PasswordLength, passwordLength)
             if (passwordLength < 3) {
                 throw IllegalArgumentException("Minimum password length must be greater than or equal to 3")
             }
-            passwordRow = getInt(R.styleable.GestureLockView_catt_PasswordRow, passwordRow)
-            passwordColumn = getInt(R.styleable.GestureLockView_catt_PasswordColumn, passwordColumn)
-            errorColor = getColor(R.styleable.GestureLockView_catt_ErrorColor, errorColor)
-            successfulColor = getColor(R.styleable.GestureLockView_catt_SuccessfulColor, successfulColor)
-            pressedColor = getColor(R.styleable.GestureLockView_catt_PressedColor, pressedColor)
-            normalColor = getColor(R.styleable.GestureLockView_catt_NormalColor, normalColor)
-            cattStrokeWidth = getDimensionPixelSize(R.styleable.GestureLockView_catt_StrokeWidth, cattStrokeWidth)
-            passwordMargin = getDimensionPixelSize(R.styleable.GestureLockView_catt_PasswordMargin, passwordMargin).run { if (this < passwordMargin) return@run passwordMargin else return@run this }
+            passwordRow = getInt(R.styleable.Day15GestureLockView_catt15_PasswordRow, passwordRow)
+            passwordColumn = getInt(R.styleable.Day15GestureLockView_catt15_PasswordColumn, passwordColumn)
+            errorColor = getColor(R.styleable.Day15GestureLockView_catt15_ErrorColor, errorColor)
+            successfulColor = getColor(R.styleable.Day15GestureLockView_catt15_SuccessfulColor, successfulColor)
+            pressedColor = getColor(R.styleable.Day15GestureLockView_catt15_PressedColor, pressedColor)
+            normalColor = getColor(R.styleable.Day15GestureLockView_catt15_NormalColor, normalColor)
+            cattStrokeWidth = getDimensionPixelSize(R.styleable.Day15GestureLockView_catt15_StrokeWidth, cattStrokeWidth)
+            passwordMargin = getDimensionPixelSize(R.styleable.Day15GestureLockView_catt15_PasswordMargin, passwordMargin).run { if (this < passwordMargin) return@run passwordMargin else return@run this }
         }.recycle()
     }
 
-    fun setOnUnlockEventListener(successfulUnlockCallback: () -> Unit, stateFailedCallback: (Int) -> Unit) {
-        listener = object : OnGestureLockEventListener {
-            override fun onSuccessfulUnlock() = successfulUnlockCallback()
-
-            override fun onStateFailed(causeState: Int) = stateFailedCallback(causeState)
-        }
-    }
+    fun setOnUnlockEventListener(listener: OnGestureLockEventListener?) = listener.apply { this@Day15GestureLockView.listener = this@apply }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val widthSize = MeasureSpec.getSize(widthMeasureSpec)
@@ -321,7 +316,7 @@ class GestureLockView
                         }
                     }
                     postInvalidate()
-                    this@GestureLockView.postDelayed({
+                    this@Day15GestureLockView.postDelayed({
                         resetPointToNormalState()
                         whetherResetPointCompleted = true
                     }, 600L)
@@ -461,7 +456,7 @@ class GestureLockView
                 val _endHeight: Float,
                 @PointStateClubs var state: Int = PointState.NORMAL)
 
-        private class ComputePointRunnable(val _root: GestureLockView) : Runnable {
+        private class ComputePointRunnable(val _root: Day15GestureLockView) : Runnable {
             var whetherComputeFinished: Boolean = true
             override fun run() {
                 if (whetherComputeFinished) {
