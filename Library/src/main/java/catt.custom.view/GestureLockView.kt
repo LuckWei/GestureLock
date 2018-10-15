@@ -112,7 +112,17 @@ class GestureLockView
         }.recycle()
     }
 
-    fun setOnUnlockEventListener(listener: OnGestureLockEventListener?) = listener.apply { this@GestureLockView.listener = this@apply }
+    fun setOnUnlockEventListener(successfulUnlockCallback: () -> Unit, stateFailedCallback: (Int) -> Unit) {
+        listener = object : OnGestureLockEventListener {
+            override fun onSuccessfulUnlock() {
+                successfulUnlockCallback()
+            }
+
+            override fun onStateFailed(causeState: Int) {
+                stateFailedCallback(causeState)
+            }
+        }
+    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val widthSize = MeasureSpec.getSize(widthMeasureSpec)
